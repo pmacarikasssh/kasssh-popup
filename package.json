@@ -1,0 +1,23 @@
+{
+  "name": "kasssh-popup",
+  "version": "0.1.0",
+  "description": "to add popup from Kasssh.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "kasssh",
+    "popup",
+    "payment"
+  ],
+  "author": "Kishan Nath <kishan@trustcode.online>",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "dotenv-webpack": "^8.0.1",
+    "style-loader": "^3.3.2",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
