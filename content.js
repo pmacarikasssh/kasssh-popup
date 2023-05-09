@@ -1,10 +1,10 @@
-export const htmlContent = ({email, phone, amount}) => `
+export const htmlContent = ( email, phone, amount, baseUrl = '.') => `
     <div class="kasssh-modal">
         <div class="kasssh-modal-content">
             <div id="kassshPopupPage" class="__kasssh-popup-page">
-                <img class="kasssh-close _kasssh-top-right __kasssh-small-icon" src="./images/kasssh-popup/circle-close-cross.png" />
+                <img class="kasssh-close _kasssh-top-right __kasssh-small-icon" src="${baseUrl}/images/kasssh-popup/circle-close-cross.png" />
                 <div class="__kasssh-logo-container">
-                    <img class="__kasssh-image-full" src="./images/kasssh-popup/kasssh-logo.png" />
+                    <img class="__kasssh-image-full" src="${baseUrl}/images/kasssh-popup/kasssh-logo.png" />
                 </div>
                 <div class="kasssh-message">
                     <h2>
@@ -15,14 +15,14 @@ export const htmlContent = ({email, phone, amount}) => `
                     <div class="step">
                         <p class="number">1</p>
                         <div class="kasssh-image_container">
-                            <img src="./images/kasssh-popup/icon-step-1.png" />
+                            <img src="${baseUrl}/images/kasssh-popup/icon-step-1.png" />
                         </div>
                         <p class="message">CLICK SUBMIT AND RECEIVE BARCODE IN EMAIL</p>
                     </div>
                     <div class="step">
                         <p class="number">2</p>
                         <div class="kasssh-image_container">
-                            <img src="./images/kasssh-popup/icon-step-2.png" />
+                            <img src="${baseUrl}/images/kasssh-popup/icon-step-2.png" />
                         </div>
                         <p class="message">VISIT ONE OF 28,000 PAYPOINT STORES</p>
                         <a class='kasssh-store-locator' href='https://www.paypoint.com/storelocator' target='_blank'><span>PayPoint Store Finder</span></a>
@@ -30,14 +30,14 @@ export const htmlContent = ({email, phone, amount}) => `
                     <div class="step">
                         <p class="number">3</p>
                         <div class="kasssh-image_container">
-                            <img src="./images/kasssh-popup/icon-step-3.png" />
+                            <img src="${baseUrl}/images/kasssh-popup/icon-step-3.png" />
                         </div>
                         <p class="message">SHOW BARCODE AND PAY!</p>
                     </div>
                     <div class="step">
                         <p class="number">4</p>
                         <div class="kasssh-image_container">
-                            <img src="./images/kasssh-popup/icon-step-4.png" />
+                            <img src="${baseUrl}/images/kasssh-popup/icon-step-4.png" />
                         </div>
                         <p class="message">YOUR PURCHASE IS COMPLETE</p>
                     </div>
@@ -48,7 +48,7 @@ export const htmlContent = ({email, phone, amount}) => `
                             <div class="rTableCell rWidth-50 kasssh-footer-left">
                                 <div class="rTableRow">
                                     <div class="rTableCell rWidth-20 __kasssh-center">
-                                        <img class="__kasssh-table-icon" src="./images/kasssh-popup/kasssh-cart.png" />
+                                        <img class="__kasssh-table-icon" src="${baseUrl}/images/kasssh-popup/kasssh-cart.png" />
                                     </div>
                                     <div class="rTableCell rWidth-80">
                                         <b id="kassshModalCartAmount">
@@ -58,7 +58,7 @@ export const htmlContent = ({email, phone, amount}) => `
                                 </div>
                                 <div class="rTableRow">
                                     <div class="rTableCell rWidth-20 __kasssh-center">
-                                        <img class="__kasssh-table-icon" src="./images/kasssh-popup/kasssh-email.png" />
+                                        <img class="__kasssh-table-icon" src="${baseUrl}/images/kasssh-popup/kasssh-email.png" />
                                     </div>
                                     <div class="rTableCell rWidth-80 __kasssh-email" id="kassshModalCartEmail">
                                         ${email}
@@ -66,7 +66,7 @@ export const htmlContent = ({email, phone, amount}) => `
                                 </div>
                                 <div class="rTableRow">
                                     <div class="rTableCell rWidth-20 __kasssh-center">
-                                        <img class="__kasssh-table-icon" src="./images/kasssh-popup/kasssh-phone.png" />
+                                        <img class="__kasssh-table-icon" src="${baseUrl}/images/kasssh-popup/kasssh-phone.png" />
                                     </div>
                                     <div class="rTableCell rWidth-80 __kasssh-email" id="kassshModalCartPhone">
                                         ${phone}
