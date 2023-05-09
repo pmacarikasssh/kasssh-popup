@@ -23,7 +23,7 @@ export const initKassshPopup = ({ email, phone, amount }, onSubmit, onClose, scr
     //if code already injected then delete and add again
     const kassshPopupExist = document.getElementById(kassshPopupId)
     if (kassshPopupExist) {
-        kassshPopup.remove()
+        kassshPopupExist.remove()
     }
 
     // create new DOM element
