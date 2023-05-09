@@ -9,7 +9,16 @@ const getScriptURL = (scriptName) => {
  return url
 }
 
-export const initKassshPopup = ({ email, phone, amount, scriptName }) => {
+const bindEvents = (onSubmit, onClose) => {
+    document.getElementById('kasssh-popup-close-btn').addEventListener('click', () => {
+        onClose ? onClose() : toggleKassshPopup(false)
+    })
+    document.getElementById('kasssh-popup-submit-btn').addEventListener('click', () => {
+        onSubmit ? onSubmit() : toggleKassshPopup(false)
+    })
+}
+
+export const initKassshPopup = ({ email, phone, amount }, onSubmit, onClose, scriptName) => {
 
     //if code already injected then delete and add again
     const kassshPopupExist = document.getElementById(kassshPopupId)
@@ -30,6 +39,7 @@ export const initKassshPopup = ({ email, phone, amount, scriptName }) => {
 
     // add new DOM element to the page
     document.body.appendChild(kassshPopup)
+    bindEvents(onSubmit, onClose)
 }
 
 export const toggleKassshPopup = (flag) => {

@@ -1,8 +1,10 @@
-export const htmlContent = ( email, phone, amount, baseUrl = '.') => `
+export const htmlContent = (email, phone, amount, baseUrl = ".") => `
     <div class="kasssh-modal">
         <div class="kasssh-modal-content">
             <div id="kassshPopupPage" class="__kasssh-popup-page">
-                <img class="kasssh-close _kasssh-top-right __kasssh-small-icon" src="${baseUrl}/images/kasssh-popup/circle-close-cross.png" />
+                <button id="kasssh-popup-close-btn" class="kasssh-close">
+                    <img class="_kasssh-top-right __kasssh-small-icon" src="${baseUrl}/images/kasssh-popup/circle-close-cross.png" />
+                </button>
                 <div class="__kasssh-logo-container">
                     <img class="__kasssh-image-full" src="${baseUrl}/images/kasssh-popup/kasssh-logo.png" />
                 </div>
@@ -74,7 +76,7 @@ export const htmlContent = ( email, phone, amount, baseUrl = '.') => `
                                 </div>
                             </div>
                             <div class="rTableCell __kasssh-center rWidth-50 __kasssh-pointer kasssh-footer-right">
-                                <button type="button" class="kasssh-continue-button">Continue</button>
+                                <button id="kasssh-popup-submit-btn" type="button" class="kasssh-continue-button">Continue</button>
                             </div>
                         </div>
                     </div>
@@ -82,4 +84,4 @@ export const htmlContent = ( email, phone, amount, baseUrl = '.') => `
             </div>
         </div>
     </div>
-`
+`;
