@@ -1,21 +1,46 @@
 const path = require("path");
-const Dotenv = require("dotenv-webpack");
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   mode: "production",
   entry: "./index.js",
   output: {
-    filename: "popup.js",
     path: path.resolve(__dirname, "dist"),
+    filename: "popup.js",
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[hash].[ext]",
+              outputPath: "images",
+            },
+          },
+        ],
       },
     ],
   },
-  plugins: [new Dotenv()],
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+    minimize: true,
+  },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: "assets/images", to: "images/kasssh-popup" }],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "popup.css",
+    }),
+  ],
 };

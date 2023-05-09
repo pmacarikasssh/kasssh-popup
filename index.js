@@ -1,16 +1,21 @@
 import {htmlContent} from './content.js'
-import './assets/css/app.css'
+import './assets/css/popup.css'
 
 let kassshPopupId = "kasssh-popup-container"
 
-const kassshUrl = process.env.KASSSH_URL
-window.initKassshPopup = ({ email, phone, amount }) => {
+export const initKassshPopup = ({ email, phone, amount }) => {
+
+    //if code already injected then delete and add again
+    const kassshPopupExist = document.getElementById(kassshPopupId)
+    if (kassshPopupExist) {
+        kassshPopup.remove()
+    }
+
     // create new DOM element
     const kassshPopup = document.createElement('div')
     kassshPopup.id = kassshPopupId
     kassshPopup.style.display = 'none'
     kassshPopup.innerHTML = htmlContent({
-        kassshUrl,
         email,
         phone,
         amount,
@@ -20,7 +25,7 @@ window.initKassshPopup = ({ email, phone, amount }) => {
     document.body.appendChild(kassshPopup)
 }
 
-window.toggleKassshPopup = (flag) => {
+export const toggleKassshPopup = (flag) => {
     const kassshPopup = document.getElementById(kassshPopupId)
     if (flag) {
         kassshPopup.style.display = "block"
