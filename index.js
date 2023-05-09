@@ -33,3 +33,7 @@ export const toggleKassshPopup = (flag) => {
         kassshPopup.style.display = "none"
     }
 }
+
+window.initKassshPopup = initKassshPopup
+window.toggleKassshPopup = toggleKassshPopup
+
