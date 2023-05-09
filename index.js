@@ -3,13 +3,13 @@ import './assets/css/popup.css'
 
 let kassshPopupId = "kasssh-popup-container"
 
-const getScriptURL = () => {
- var script =  document.currentScript || document.querySelector('script[src*="myscript.js"]')
+const getScriptURL = (scriptName) => {
+ var script =  document.currentScript || document.querySelector(`script[src*="${scriptName}"]`)
  const [,url,] = script.src.match(/^(.*)(\/.*\.js)/)
  return url
 }
 
-export const initKassshPopup = ({ email, phone, amount }) => {
+export const initKassshPopup = ({ email, phone, amount, scriptName }) => {
 
     //if code already injected then delete and add again
     const kassshPopupExist = document.getElementById(kassshPopupId)
@@ -25,7 +25,7 @@ export const initKassshPopup = ({ email, phone, amount }) => {
         email,
         phone,
         amount,
-        getScriptURL(),
+        getScriptURL( scriptName ? scriptName : 'popup.js'),
     )
 
     // add new DOM element to the page
