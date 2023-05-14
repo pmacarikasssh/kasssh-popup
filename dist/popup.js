@@ -115,7 +115,7 @@
             </div>
             <div class="col-md-6 px-md-5 kasssh-confirm d-flex justify-content-md-end justify-content-center my-auto">
                 <button type="button" data-kasssh-submit class="kasssh-submit-button btn btn-lg">
-                    <img src="./images/kasssh-rectangle.png" class="img-fluid">
+                    <img src="${s}/images/kasssh-rectangle.png" class="img-fluid">
                 </button>
             </div>
         </div>
