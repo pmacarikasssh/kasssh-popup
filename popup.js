@@ -52,7 +52,6 @@ export const initKassshPopup = (
     // create new DOM element
     const kassshPopup = document.createElement("div");
     kassshPopup.id = kassshPopupId;
-    kassshPopup.dataset.kassshPopup = ""
     kassshPopup.style.display = "none";
     kassshPopup.innerHTML = htmlContent(email, phone, amount, getScriptURL());
 
