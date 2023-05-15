@@ -1,5 +1,5 @@
 export const htmlContent = (email, phone, amount, baseUrl = ".") => `
-<div class="kasssh-popup shadow-sm border">
+<div class="kasssh-popup shadow-lg">
 
     <div class="kasssh-popup-logo">
         <img class="img-fluid" src="${baseUrl}/images/kasssh-logo.png" />
