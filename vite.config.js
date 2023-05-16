@@ -28,7 +28,7 @@ export default defineConfig({
   },
   plugins: [
     cssPurge({
-      content: ["./content.js"],
+      content: ["./src/content.js"],
     }),
   ],
 });

@@ -25,6 +25,10 @@
       }
     }
 
+    .kasssh-text-color {
+      color:#58bbb0;
+    }
+
     .kasssh-close-button {
       position: absolute;
       top: 0;
@@ -81,7 +85,6 @@
       width: 90vw;
       border-radius: 0 0 1rem 1rem;
       background: #f7f7f8;
-      padding-top: 1rem;
 
       .row {
         margin: 0;
@@ -90,6 +93,7 @@
       .info-text {
         color: #7f7f7f;
         font-weight: 800;
+        line-height: 2rem;
       }
       .kasssh-icon {
         color: #58bbb1;
@@ -104,6 +108,8 @@
       }
 
       .check-box-container {
+        height: 1.5rem;
+        line-height: 1.5rem;
         position: relative;
         cursor: pointer;
         padding-left: 36px;
@@ -154,6 +160,18 @@
         }
       }
 
+      //007770
+      [data-kasssh-amount-error] {
+        width: 100%;
+        background: #009990;
+        z-index: 9;
+        opacity: 0.5;
+        
+        h2 {
+          color: #fff;
+          opacity: 1;
+        }
+      }
       .kasssh-summary {
         height: 100%;
         border-radius: 0 0 0 1rem;

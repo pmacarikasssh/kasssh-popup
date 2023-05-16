@@ -1,15 +1,9 @@
-import { htmlContent } from "./content.js";
+import { htmlContent } from "/src/content.js";
 import "./assets/css/popup.scss";
+import { getScriptURL } from "./src/url-helper";
 
 let kassshPopupId = "kasssh-popup-container";
-
-const getScriptURL = (scriptName = "popup.js") => {
-    var script =
-        document.currentScript ||
-        document.querySelector(`script[src*="${scriptName}"]`);
-    const [, url] = script.src.match(/^(.*)(\/.*\.js)/);
-    return url;
-};
+let cartAmount = 0;
 
 const bindEvents = (onSubmit, onClose) => {
     document
@@ -21,20 +15,46 @@ const bindEvents = (onSubmit, onClose) => {
     const submitButton = document.querySelector("[data-kasssh-submit]");
     submitButton.disabled = true;
     submitButton.addEventListener("click", () => {
-        let phone = document.querySelector("[data-kasssh-phone]");
         onSubmit({
-            phone: phone.value ? phone.value : phone.innerText,
+            phone: validatePhone(),
         });
         toggleKassshPopup(false);
     });
 
-    document.querySelector("[data-kasssh-tnc]").addEventListener("change", (e) => {
-        if (e.target.checked) {
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
-        }
-    });
+    document
+        .querySelector("[data-kasssh-tnc]")
+        .addEventListener("change", validateForm);
+    document
+        .querySelector("[data-kasssh-phone]")
+        .addEventListener("change", validateForm);
+};
+
+const validateForm = () => {
+    const submitButton = document.querySelector("[data-kasssh-submit]");
+
+    if (cartAmount > 300) {
+        // console.log("invalid amount");
+        return;
+    }
+
+    if (!validatePhone()) {
+        // console.log("invalid phone", validatePhone());
+        return;
+    }
+
+    if (!document.querySelector("[data-kasssh-tnc]").checked) {
+        // console.log("tnc checck required");
+        return;
+    }
+
+    submitButton.disabled = false;
+};
+
+const validatePhone = () => {
+    let phone = document.querySelector("[data-kasssh-phone]");
+    phone = phone.tagName == "INPUT" ? phone.value : phone.innerText;
+
+    return /^\d{10,}$/.test(phone) ? phone : null;
 };
 
 export const initKassshPopup = (
@@ -43,6 +63,7 @@ export const initKassshPopup = (
     onClose = null,
     scriptName = null
 ) => {
+    cartAmount = amount;
     //if code already injected then delete and add again
     const kassshPopupExist = document.getElementById(kassshPopupId);
     if (kassshPopupExist) {
@@ -58,6 +79,10 @@ export const initKassshPopup = (
     // add new DOM element to the page
     document.body.appendChild(kassshPopup);
     bindEvents(onSubmit, onClose);
+
+    if (amount <= 300) {
+        document.querySelector("[data-kasssh-amount-error]").style.display = "none";
+    }
 };
 
 export const toggleKassshPopup = (flag) => {
