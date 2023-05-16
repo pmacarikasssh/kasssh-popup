@@ -31,6 +31,7 @@ const bindEvents = (onSubmit, onClose) => {
 
 const validateForm = () => {
     const submitButton = document.querySelector("[data-kasssh-submit]");
+    submitButton.disabled = true;
 
     if (cartAmount > 300) {
         // console.log("invalid amount");
