@@ -62,7 +62,8 @@ export const initKassshPopup = (
     { email, phone, amount },
     onSubmit,
     onClose = null,
-    scriptName = "popup.js"
+    scriptName = "popup.js",
+    assetsUrl = null,
 ) => {
     cartAmount = amount;
     //if code already injected then delete and add again
@@ -75,7 +76,7 @@ export const initKassshPopup = (
     const kassshPopup = document.createElement("div");
     kassshPopup.id = kassshPopupId;
     kassshPopup.style.display = "none";
-    kassshPopup.innerHTML = htmlContent(email, phone, amount, getScriptURL(scriptName));
+    kassshPopup.innerHTML = htmlContent(email, phone, amount, assetsUrl ? assetsUrl : getScriptURL(scriptName));
 
     // add new DOM element to the page
     document.body.appendChild(kassshPopup);
