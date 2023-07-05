@@ -1,4 +1,4 @@
-import { htmlContent } from "/src/content.js";
+import { htmlContent } from "./src/content.js";
 import "./assets/css/popup.scss";
 import { getScriptURL } from "./src/url-helper";
 
