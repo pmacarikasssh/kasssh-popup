@@ -2,7 +2,7 @@
 // Import all of Bootstrap's CSS
 
 [data-kasssh-popup] {
-  @import "~bootstrap/scss/bootstrap";
+  @import "/node_modules/bootstrap/scss/bootstrap";
 
   .kasssh-popup {
     background: #fff;
