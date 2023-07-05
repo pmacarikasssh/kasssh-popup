@@ -1,5 +1,5 @@
 
-export const getScriptURL = (scriptName = "popup.js") => {
+export const getScriptURL = (scriptName) => {
     var script =
         document.currentScript ||
         document.querySelector(`script[src*="${scriptName}"]`);
