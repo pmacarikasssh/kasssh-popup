@@ -24,8 +24,8 @@ const bindEvents = (onSubmit, onClose) => {
     });
 
     document
-        .querySelector("[data-kasssh-input]")
-        .addEventListener("change", validateForm);
+        .querySelectorAll("[data-kasssh-input]")
+        .forEach(node => node.addEventListener("change", validateForm));
 };
 
 const validateForm = () => {
