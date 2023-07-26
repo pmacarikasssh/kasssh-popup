@@ -24,10 +24,7 @@ const bindEvents = (onSubmit, onClose) => {
     });
 
     document
-        .querySelector("[data-kasssh-tnc]")
-        .addEventListener("change", validateForm);
-    document
-        .querySelector("[data-kasssh-phone]")
+        .querySelector("[data-kasssh-input]")
         .addEventListener("change", validateForm);
 };
 

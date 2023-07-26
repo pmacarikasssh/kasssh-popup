@@ -105,7 +105,7 @@ export const htmlContent = (email, phone, amount, baseUrl = ".") => `
                             email ?
                                 `<span class="info-text" data-kasssh-email>${email}</span>`
                                 :
-                                `<input data-kasssh-email type="email" required class="kasssh-input" />`
+                                `<input data-kasssh-email data-kasssh-input type="email" required class="kasssh-input" />`
                         }
                     </div>
                     <div class="d-flex my-auto mx-4 gap-2 mb-2">
@@ -118,12 +118,12 @@ export const htmlContent = (email, phone, amount, baseUrl = ".") => `
                             phone ?
                                 `<span class="info-text" data-kasssh-phone>${phone}</span>`
                                 :
-                                `<input data-kasssh-phone type="text" required class="kasssh-input" />`
+                                `<input data-kasssh-phone data-kasssh-input type="text" required class="kasssh-input" />`
                         }
                     </div>
 
                     <label class="check-box-container mx-4 mt-2 gap-2 d-flex mb-2">
-                        <input data-kasssh-tnc type="checkbox">
+                        <input data-kasssh-tnc data-kasssh-input type="checkbox">
                         <span class="checkmark"></span>
                         I have read and agreed to the Kasssh
                         <a class="kasssh-text-color" href="https://kasssh.com/kasssh-service/" target="_blank">T&Cs</a>
