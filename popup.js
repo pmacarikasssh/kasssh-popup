@@ -83,7 +83,7 @@ export const initKassshPopup = (
     const kassshPopup = document.createElement("div");
     kassshPopup.id = kassshPopupId;
     kassshPopup.style.display = "none";
-    kassshPopup.innerHTML = htmlContent(email, phone, amount, assetsUrl ? assetsUrl : getScriptURL(scriptName));
+    kassshPopup.innerHTML = htmlContent(email, phone, amount.toFixed(2), assetsUrl ? assetsUrl : getScriptURL(scriptName));
 
     // add new DOM element to the page
     document.body.appendChild(kassshPopup);
