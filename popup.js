@@ -1,6 +1,7 @@
 import { htmlContent } from "./src/content.js";
 import "./assets/css/popup.scss";
 import { getScriptURL } from "./src/url-helper";
+import emailRegex from "./src/email-regex";
 
 let kassshPopupId = "kasssh-popup-container";
 let cartAmount = 0;
@@ -40,6 +41,7 @@ const validateForm = () => {
     }
 
     if (!validatePhone() || !validateEmail()) {
+        console.log("email or phone invalid");
         return;
     }
 
@@ -52,17 +54,26 @@ const validateForm = () => {
 };
 
 const validatePhone = () => {
-    let phone = document.querySelector("[data-kasssh-phone]");
-    phone = phone.tagName == "INPUT" ? phone.value : phone.innerText;
+    let field = document.querySelector("[data-kasssh-phone]");
+    if(field.tagName != "INPUT"){
+        return field.innerText;
+    }
 
-    return /^\d{10,}$/.test(phone) ? phone : null;
+    field = field.value;
+
+    return /^\d{10,}$/.test(field) ? field : null;
 };
 
 const validateEmail = () => {
     let field = document.querySelector("[data-kasssh-email]");
-    field = field.tagName == "INPUT" ? field.value : field.innerText;
 
-    return /^\d{10,}$/.test(field) ? field : null;
+    if(field.tagName != "INPUT"){
+        return field.innerText;
+    }
+
+    field = field.value;
+
+    return emailRegex.test(field) ? field : null;
 };
 
 export const initKassshPopup = (
