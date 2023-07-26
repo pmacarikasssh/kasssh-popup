@@ -17,6 +17,7 @@ const bindEvents = (onSubmit, onClose) => {
     submitButton.addEventListener("click", () => {
         onSubmit({
             phone: validatePhone(),
+            email: validateEmail(),
         });
         toggleKassshPopup(false);
     });
@@ -38,8 +39,7 @@ const validateForm = () => {
         return;
     }
 
-    if (!validatePhone()) {
-        // console.log("invalid phone", validatePhone());
+    if (!validatePhone() || !validateEmail()) {
         return;
     }
 
@@ -56,6 +56,13 @@ const validatePhone = () => {
     phone = phone.tagName == "INPUT" ? phone.value : phone.innerText;
 
     return /^\d{10,}$/.test(phone) ? phone : null;
+};
+
+const validateEmail = () => {
+    let field = document.querySelector("[data-kasssh-email]");
+    field = field.tagName == "INPUT" ? field.value : field.innerText;
+
+    return /^\d{10,}$/.test(field) ? field : null;
 };
 
 export const initKassshPopup = (
