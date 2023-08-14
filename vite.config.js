@@ -1,6 +1,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import cssPurge from "vite-plugin-purgecss";
+import markdownRawPlugin from 'vite-raw-plugin';
 
 export default defineConfig({
   base: "./",
@@ -29,6 +30,9 @@ export default defineConfig({
   plugins: [
     cssPurge({
       content: ["./src/content.js"],
+    }),
+    markdownRawPlugin({
+      fileRegex: /\.html$/
     }),
   ],
 });

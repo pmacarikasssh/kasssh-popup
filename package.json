@@ -12,7 +12,8 @@
     "purgecss": "^5.0.0",
     "sass": "^1.62.1",
     "vite": "^4.3.2",
-    "vite-plugin-purgecss": "^0.2.12"
+    "vite-plugin-purgecss": "^0.2.12",
+    "vite-raw-plugin": "^1.0.2"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.7",

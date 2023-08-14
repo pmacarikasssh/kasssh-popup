@@ -7,10 +7,10 @@
   .kasssh-popup {
     background: #fff;
     position: fixed;
-    width: 90vw;
-    height: 90vh;
-    left: 5%;
-    top: 5%;
+    width: 98vw;
+    height: 98vh;
+    left: 1%;
+    top: 1%;
     border-radius: 1rem;
     overflow: hidden;
     z-index: 9999;
@@ -45,7 +45,6 @@
     }
 
     .popup-body {
-      padding-top: 0.5rem;
       height: calc(100% - 110px - 160px);
       overflow-y: auto;
 
@@ -57,15 +56,8 @@
 
       .kasssh-steps {
         .kasssh-step {
-          margin-bottom: 1rem;
-          .step-img {
-            padding: 2rem;
-          }
           .step-number {
             color: #58bbb1;
-          }
-          .step-message {
-            padding-top: 1rem;
           }
           .kasssh-store-locator {
             font-size: 1rem;
@@ -80,11 +72,7 @@
     }
 
     .kasssh-footer {
-      position: fixed;
-      bottom: 5%;
-      width: 90vw;
-      border-radius: 0 0 1rem 1rem;
-      background: #f7f7f8;
+      width: 100%;
 
       .row {
         margin: 0;
@@ -107,60 +95,6 @@
         }
       }
 
-      .check-box-container {
-        height: 1.5rem;
-        line-height: 1.5rem;
-        position: relative;
-        cursor: pointer;
-        padding-left: 36px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-
-        &:hover input ~ .checkmark {
-          background-color: #dcfffb;
-        }
-
-        input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-          height: 0;
-          width: 0;
-          &:checked ~ .checkmark {
-            background-color: #58bbb1;
-          }
-        }
-        input:checked ~ .checkmark:after {
-          display: block;
-        }
-        .checkmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 25px;
-          width: 25px;
-          background-color: #fff;
-          border: 2px solid #58bbb1;
-          &:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
-          }
-        }
-      }
-
-      //007770
       [data-kasssh-amount-error] {
         width: 100%;
         background: #009990;
@@ -175,7 +109,6 @@
       .kasssh-summary {
         height: 100%;
         border-radius: 0 0 0 1rem;
-        padding: 0.5rem 1rem;
 
         a {
           font-weight: 800;
@@ -199,27 +132,125 @@
       }
     }
   }
-
-  @media only screen and (max-width: 1000px) {
+  @include media-breakpoint-up(xs) {
+    .kasssh-message {
+      font-size: 1rem;
+    }
+    .step-message {
+      font-size: 0.7rem;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+  }
+  @include media-breakpoint-up(md) {
+    .kasssh-message{
+      font-size: 2rem;
+    }
+    .step-message {
+      font-size: 1rem;
+    }
     .kasssh-popup {
-      width: 100%;
-      left: 0;
-      top: 0;
-      height: 100%;
-      border-radius: 0;
-      overflow-y: auto;
+      box-shadow: $box-shadow-lg;
+    }
+    .kasssh-footer {
+      border-radius: 0 0 1rem 1rem;
+      background: #f7f7f8;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+  }
+  @include media-breakpoint-up(xl) {
+  }
+  @include media-breakpoint-up(xxl) {
+  }
 
-      .popup-body {
-        height: auto;
-        overflow-y: hidden;
+  @include media-breakpoint-down(md) {
+    .kasssh-close-button {
+      display: none;
+    }
+    .kasssh-step {
+      .step-img img{
+        height: 4rem;
       }
+    }
+    .kasssh-popup {
+      position: unset;
+      width: 100%;
+      left: unset;
+      top: unset;
+      border: none;
+      overflow: unset;
+      display: flex;
+      flex-direction: column;
+      .popup-body {
+        height:auto;
+        overflow-y:unset;
+      }
+    }
+    .kasssh-footer {
+      background: #fafafa;
+      border-radius: 0 0 0 0;
+      border-top: 1px solid #f0f0f0;
+      margin-top: auto;
+      padding-top: 1rem;
 
-      .kasssh-footer {
-        position: unset;
-        bottom: unset;
-        width: unset;
-        border-radius: unset;
+      [kasssh-tnc-label] {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .check-box-container {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    padding-left: 36px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover input ~ .checkmark {
+      background-color: #dcfffb;
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      &:checked ~ .checkmark {
+        background-color: #58bbb1;
+      }
+    }
+    input:checked ~ .checkmark:after {
+      display: block;
+    }
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #fff;
+      border: 2px solid #58bbb1;
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
       }
     }
   }
 }
+
