@@ -1,115 +1,156 @@
 import { htmlContent } from "./src/content.js";
 import "./assets/css/popup.scss";
-import { getScriptURL } from "./src/url-helper";
+import { getScriptURL } from "./src/url-helper.js";
 import emailRegex from "./src/email-regex";
 
-let kassshPopupId = "kasssh-popup-container";
-let cartAmount = 0;
+class Kasssh {
+  kassshPopupId = "kasssh-popup-container";
+  email = null;
+  phone = null;
 
-const bindEvents = (onSubmit, onClose) => {
-    document
-        .querySelector("[data-kasssh-close]")
-        .addEventListener("click", () => {
-            onClose ? onClose() : toggleKassshPopup(false);
-        });
+  constructor(amount, scriptName = "popup.js", assetsUrl = null) {
+    this.cartAmount = amount;
+    this.scriptName = scriptName;
+    this.assetsUrl = assetsUrl;
+    this.onSubmitCallback = null;
+    this.onCloseCallback = null;
+  }
 
-    const submitButton = document.querySelector("[data-kasssh-submit]");
-    submitButton.disabled = true;
-    submitButton.addEventListener("click", () => {
-        onSubmit({
-            phone: validatePhone(),
-            email: validateEmail(),
-        });
-        toggleKassshPopup(false);
-    });
+  init({ email = null, phone = null }) {
+    this.email = email;
+    this.phone = phone;
 
-    document
-        .querySelectorAll("[data-kasssh-input]")
-        .forEach(node => node.addEventListener("change", validateForm));
-};
-
-const validateForm = () => {
-    const submitButton = document.querySelector("[data-kasssh-submit]");
-    submitButton.disabled = true;
-
-    if (cartAmount > 300) {
-        // console.log("invalid amount");
-        return;
-    }
-
-    if (!validatePhone() || !validateEmail()) {
-        console.log("email or phone invalid");
-        return;
-    }
-
-    if (!document.querySelector("[data-kasssh-tnc]").checked) {
-        // console.log("tnc checck required");
-        return;
-    }
-
-    submitButton.disabled = false;
-};
-
-const validatePhone = () => {
-    let field = document.querySelector("[data-kasssh-phone]");
-    if(field.tagName != "INPUT"){
-        return field.innerText;
-    }
-
-    field = field.value;
-
-    return /^\d{10,}$/.test(field) ? field : null;
-};
-
-const validateEmail = () => {
-    let field = document.querySelector("[data-kasssh-email]");
-
-    if(field.tagName != "INPUT"){
-        return field.innerText;
-    }
-
-    field = field.value;
-
-    return emailRegex.test(field) ? field : null;
-};
-
-export const initKassshPopup = (
-    { email, phone, amount },
-    onSubmit,
-    onClose = null,
-    scriptName = "popup.js",
-    assetsUrl = null,
-) => {
-    cartAmount = amount;
     //if code already injected then delete and add again
-    const kassshPopupExist = document.getElementById(kassshPopupId);
+    const kassshPopupExist = document.getElementById(this.kassshPopupId);
     if (kassshPopupExist) {
-        kassshPopupExist.remove();
+      kassshPopupExist.remove();
     }
 
     // create new DOM element
     const kassshPopup = document.createElement("div");
-    kassshPopup.id = kassshPopupId;
+    kassshPopup.id = this.kassshPopupId;
     kassshPopup.style.display = "none";
-    kassshPopup.innerHTML = htmlContent(email, phone, amount.toFixed(2), assetsUrl ? assetsUrl : getScriptURL(scriptName));
+    kassshPopup.innerHTML = htmlContent(
+      email,
+      phone,
+      this.cartAmount.toFixed(2),
+      this.assetsUrl ? this.assetsUrl : this.getScriptURL(this.scriptName, this.assetsUrl)
+    );
 
     // add new DOM element to the page
     document.body.appendChild(kassshPopup);
-    bindEvents(onSubmit, onClose);
 
-    if (amount <= 300) {
-        document.querySelector("[data-kasssh-amount-error]").style.display = "none";
-    }
-};
-
-export const toggleKassshPopup = (flag) => {
-    const kassshPopup = document.getElementById(kassshPopupId);
-    if (flag) {
-        kassshPopup.style.display = "block";
+    // show/hide email/phone
+    if (!!email) {
+      document.querySelector("[data-kasssh-email][data-kasssh-input]").style.display = "none";
     } else {
-        kassshPopup.style.display = "none";
+      document.querySelector("[data-kasssh-email][data-kasssh-info]").style.display = "none";
     }
-};
+    if (!!phone) {
+      document.querySelector("[data-kasssh-phone][data-kasssh-input]").style.display = "none";
+    }
 
-window.initKassshPopup = initKassshPopup;
-window.toggleKassshPopup = toggleKassshPopup;
+    this.bindEvents();
+
+    if (this.cartAmount <= 300) {
+      document.querySelector("[data-kasssh-amount-error]").style.display = "none";
+    }
+  }
+
+  toggle(flag) {
+    const kassshPopup = document.getElementById(this.kassshPopupId);
+    if (flag) {
+      kassshPopup.style.display = "block";
+    } else {
+      kassshPopup.style.display = "none";
+    }
+  }
+
+  toggleSpinner(flag) {
+    if(flag) {
+      document.getElementById("kasssh-loading-spinner").classList.remove('d-none');
+    } else {
+      document.getElementById("kasssh-loading-spinner").classList.add('d-none');
+    }
+  }
+
+  onSubmit(callback) {
+    this.onSubmitCallback = callback;
+  }
+
+  onClose(callback) {
+    this.onCloseCallback = callback;
+  }
+
+  bindEvents() {
+    document.querySelectorAll("[data-kasssh-close]").forEach((node) => {
+      node.addEventListener("click", () => {
+        this.onCloseCallback ? this.onCloseCallback() : this.toggle(false);
+      });
+    });
+
+    const submitButton = document.querySelector("[data-kasssh-submit]");
+    submitButton.disabled = true;
+    submitButton.addEventListener("click", () => {
+      const phone = this.validatePhone();
+      const email = this.validateEmail();
+      if (phone && email) {
+        this.onSubmitCallback({ phone, email });
+      }
+    });
+
+    document.querySelectorAll("[data-kasssh-input]").forEach((node) =>
+      node.addEventListener("input", this.validateForm.bind(this))
+    );
+  }
+
+  validateForm() {
+    const submitButton = document.querySelector("[data-kasssh-submit]");
+    submitButton.disabled = true;
+
+    if (this.cartAmount > 300) {
+      return;
+    }
+
+    if (!this.validatePhone() || !this.validateEmail()) {
+      return;
+    }
+
+    if (!document.querySelector("[data-kasssh-tnc]").checked) {
+      return;
+    }
+
+    submitButton.disabled = false;
+  }
+
+  validatePhone() {
+    if (this.phone) {
+      return this.phone;
+    }
+
+    let field = document.querySelector("[data-kasssh-phone] input");
+    field = field.value;
+    return /^\d{10,}$/.test(field) ? field : null;
+  }
+
+  validateEmail() {
+    if (this.email) {
+      return this.email;
+    }
+
+    let field = document.querySelector("[data-kasssh-email] input");
+    field = field.value;
+    return emailRegex().test(field) ? field : null;
+  }
+
+  getScriptURL(scriptName, assetsUrl) {
+    if (assetsUrl) {
+      return `${assetsUrl}/${scriptName}`;
+    } else {
+      return getScriptURL(scriptName);
+    }
+  }
+}
+
+window.Kasssh = Kasssh;
+export default Kasssh;

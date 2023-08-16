@@ -6,22 +6,69 @@
     <title>Kasssh Popup</title>
   </head>
   <body>
+    <div class="" data-kasssh-popup>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" placeholder="amount">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="number" class="form-control" id="phone" placeholder="phone">
+      </div>
+
+      <button class="btn btn-success" onclick="onOpen()">
+        Open
+      </button>
+
+    </div>
+
     <script type="module" src="/popup.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        window.initKassshPopup(
-          {
-            email: "customer@example.com",
-            // phone: "9999999999",
-            amount: 300.0,
-          },
-          (data) => {
-            console.log("Submited!", data);
-          }
-        );
 
-        window.toggleKassshPopup(true);
+      document.addEventListener("DOMContentLoaded", () => {
+        emailDemo();
       });
+
+      function emailDemo() {
+        const kasssh = new window.Kasssh(300.0);
+        kasssh.init({ email: "customer@example.com" });
+        kasssh.onSubmit((data) => {
+          kasssh.toggleSpinner(true)
+          setTimeout(()=>{
+            console.log("Submitted!", data);
+            kasssh.toggleSpinner(true);
+            kasssh.toggle(false);
+          },2000)
+        });
+
+        kasssh.toggle(true);
+      }
+
+      function onOpen() {
+        const amount = parseFloat(document.getElementById('amount').value);
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        const kasssh = new window.Kasssh(amount);
+        kasssh.init({ email, phone });
+        kasssh.onSubmit((data) => {
+          kasssh.toggleSpinner(true)
+          setTimeout(()=>{
+            console.log("Submitted!", data);
+            kasssh.toggleSpinner(true);
+            kasssh.toggle(false);
+          },2000)
+        });
+
+        kasssh.toggle(true);
+      }
+
     </script>
   </body>
 </html>
