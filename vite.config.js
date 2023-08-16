@@ -32,7 +32,7 @@ export default defineConfig({
       content: ["./src/content.js"],
     }),
     markdownRawPlugin({
-      fileRegex: /\.html$/
+      fileRegex: /content\.html$/
     }),
   ],
 });

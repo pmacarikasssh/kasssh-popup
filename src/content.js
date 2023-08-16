@@ -1,4 +1,4 @@
-import content from "./content.html"
+import content from "./content.html?raw"
 export const htmlContent = (email, phone, amount, baseUrl = ".") => {
     const values = {
         amount,
