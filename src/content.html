@@ -1,4 +1,7 @@
 <div data-kasssh-popup>
+    <div id="kasssh-loading-spinner" class="kasssh-loading-container position-absolute d-none d-flex justify-content-center align-items-center">
+        <div class="kasssh-loading"></div>
+    </div>
     <div class="kasssh-popup d-flex flex-column">
         
         <!-- header -->
@@ -14,7 +17,7 @@
 
             <h3 class="my-md-4 my-1 text-center kasssh-text-color">
                 Pay with cash to complete your order
-            </h2>
+            </h3>
 
             <div class="steps row w-100">
 
@@ -24,7 +27,7 @@
                         <img class="img-fluid" src="{{baseUrl}}/images/icon-step-1.png" />
                     </div>
                     <p class="step-message">
-                        click submit and receive barcode in email
+                        Receive barcode in email
                     </p>
                 </div>
 
@@ -34,7 +37,7 @@
                         <img class="img-fluid" src="{{baseUrl}}/images/icon-step-2.png" />
                     </div>
                     <p class="step-message">
-                        visit one of 28,000 paypoint stores
+                        Visit one of 28,000 paypoint stores
                     </p>
                 </div>
 
@@ -44,7 +47,7 @@
                         <img class="img-fluid" src="{{baseUrl}}/images/icon-step-3.png" />
                     </div>
                     <p class="step-message">
-                        show barcode and pay!
+                        Show barcode and pay!
                     </p>
                 </div>
                 
@@ -54,13 +57,13 @@
                         <img class="img-fluid" src="{{baseUrl}}/images/icon-step-4.png" />
                     </div>
                     <p class="step-message">
-                        YOUR PURCHASE IS COMPLETE
+                        Your purchase is complete
                     </p>
                 </div>
 
             </div>
 
-            <p class="text-center">
+            <p class="text-center mt-md-4 mt-sm-2">
                 <a
                     class="kasssh-store-locator"
                     href="https://www.paypoint.com/storelocator"
@@ -83,7 +86,7 @@
             <div class="text-center">
 
                 <h3 class="">
-                    Cart Total:
+                    Order Total:
                     <span data-kasssh-currency>£</span><span data-kasssh-cart-amount>{{amount}}</span>
                 </h3>
 
@@ -92,9 +95,6 @@
                         We will email the barcode to <span>{{email}}</span>
                     </a>
                     <br>
-                    <a data-kasssh-phone data-kasssh-info>
-                        We may send a confirmation to phone number <span>{{phone}}</span>
-                    </a>
                 </p>
 
             </div>
@@ -103,15 +103,14 @@
 
                 <div class="mt-2" data-kasssh-email data-kasssh-input>
                     <label class="form-label d-block">
-                        We will require your email to send the barcode to
+                        We need your email to send the barcode:
                     </label>
                     <input class="mx-auto form-control" value="{{email}}" placeholder="enter your email" type="email" />
-                    
                 </div>
 
                 <div class="mt-2" data-kasssh-phone data-kasssh-input>
                     <label class="form-label d-block">
-                        We may require your phone number to send the confirmation
+                        Phone number is required for verification and compliance:
                     </label>
                     <input class="mx-auto form-control" value="{{phone}}" placeholder="enter your phone number" type="text" />
                     
@@ -124,11 +123,20 @@
                         <span>
                           I have read and agreed to the Kasssh
                           <a
-                            class="kasssh-text-color"
-                            href="https://kasssh.com/kasssh-service/"
-                            target="_blank"
-                            >T&Cs</a
+                              class="kasssh-text-color"
+                              href="https://kasssh.com/kasssh-service/"
+                              target="_blank"
+                              >
+                              T&Cs
+                          </a>
+                          and
+                          <a
+                              class="kasssh-text-color"
+                              href="https://kasssh.com/terms-conditions/"
+                              target="_blank"
                           >
+                              Privacy Policy
+                          </a>
                         </span>
                     </label>
                 </div>
