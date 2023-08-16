@@ -53,23 +53,14 @@ const validateForm = () => {
 };
 
 const validatePhone = () => {
-    let field = document.querySelector("[data-kasssh-phone]");
-    if(field.tagName != "INPUT"){
-        return field.innerText;
-    }
-
+    let field = document.querySelector("[data-kasssh-phone] input");
     field = field.value;
 
     return /^\d{10,}$/.test(field) ? field : null;
 };
 
 const validateEmail = () => {
-    let field = document.querySelector("[data-kasssh-email]");
-
-    if(field.tagName != "INPUT"){
-        return field.innerText;
-    }
-
+    let field = document.querySelector("[data-kasssh-email] input");
     field = field.value;
 
     return emailRegex().test(field) ? field : null;
@@ -112,7 +103,7 @@ export const initKassshPopup = (
 
     bindEvents(onSubmit, onClose);
 
-    if (amount <= 300) {
+    if (cartAmount <= 300) {
         document.querySelector("[data-kasssh-amount-error]").style.display = "none";
     }
 };

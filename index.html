@@ -6,13 +6,39 @@
     <title>Kasssh Popup</title>
   </head>
   <body>
+    <div class="" data-kasssh-popup>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" placeholder="amount">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="number" class="form-control" id="phone" placeholder="phone">
+      </div>
+
+      <button class="btn btn-success" onclick="onOpen()">
+        Open
+      </button>
+
+    </div>
+
     <script type="module" src="/popup.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        emailDemo();
+      });
+
+
+      function emailDemo() {
         window.initKassshPopup(
           {
             email: "customer@example.com",
-            // phone: "9999999999",
             amount: 300.0,
           },
           (data) => {
@@ -21,7 +47,38 @@
         );
 
         window.toggleKassshPopup(true);
-      });
+      }
+
+      function allDemo() {
+        window.initKassshPopup(
+          {
+            email: "customer@example.com",
+            phone: "9999999999",
+            amount: 300.0,
+          },
+          (data) => {
+            console.log("Submited!", data);
+          }
+        );
+
+        window.toggleKassshPopup(true);
+      }
+
+      function onOpen() {
+        window.initKassshPopup(
+          {
+            amount: parseFloat(document.getElementById('amount').value),
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+          },
+          (data) => {
+            console.log("Submited!", data);
+          }
+        );
+
+        window.toggleKassshPopup(true);
+      }
+
     </script>
   </body>
 </html>
