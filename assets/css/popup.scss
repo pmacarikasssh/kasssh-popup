@@ -6,7 +6,7 @@
 [data-kasssh-popup] {
   @import "/node_modules/bootstrap/scss/bootstrap";
 
-  position: absolute;
+  position: fixed;
   z-index: 999;
   background: #fff;
   height: 100vh;
