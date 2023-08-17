@@ -1,6 +1,11 @@
 @import "./font.css";
 
 #kasssh-popup-container {
+}
+
+[data-kasssh-popup] {
+  @import "/node_modules/bootstrap/scss/bootstrap";
+
   position: absolute;
   z-index: 999;
   background: #fff;
@@ -9,16 +14,9 @@
   overflow-y: auto;
   top: 0;
   left: 0;
-}
-
-[data-kasssh-popup] {
-  @import "/node_modules/bootstrap/scss/bootstrap";
-
   font-family: Raleway;
-  height: 100%;
 
   .kasssh-popup {
-    /**/
     height: 100%;
   }
 
