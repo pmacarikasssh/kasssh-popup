@@ -29,7 +29,7 @@ export default defineConfig({
   },
   plugins: [
     cssPurge({
-      content: ["./src/content.js"],
+      content: ["./src/content.html"],
     }),
     markdownRawPlugin({
       fileRegex: /content\.html$/
