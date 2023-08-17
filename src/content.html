@@ -1,8 +1,8 @@
-<div data-kasssh-popup="">
+<div data-kasssh-popup class="d-flex flex-column">
     <div id="kasssh-loading-spinner" class="kasssh-loading-container position-absolute d-none d-flex justify-content-center align-items-center">
         <div class="kasssh-loading"></div>
     </div>
-    <div class="kasssh-popup d-flex flex-column">
+    <div class="kasssh-popup d-flex flex-column shadow-lg border-1">
         
         <!-- header -->
         <div class="kasssh-header">
@@ -90,16 +90,15 @@
                     <span data-kasssh-currency>£</span><span data-kasssh-cart-amount>{{amount}}</span>
                 </h3>
 
-                <p class="my-0 py-0">
-                    <a data-kasssh-email data-kasssh-info>
+                <div class="my-0 py-0">
+                    <p data-kasssh-email data-kasssh-info class="py-lg-4 my-1 py-0">
                         We will email the barcode to <span>{{email}}</span>
-                    </a>
-                    <br>
-                </p>
+                    </p>
+                </div>
 
             </div>
 
-            <div class="text-center">
+            <div class="text-center lg-my-2 my-1">
 
                 <div class="mt-2" data-kasssh-email data-kasssh-input>
                     <label class="form-label d-block">
@@ -140,7 +139,6 @@
                         </span>
                     </label>
                 </div>
-                
                 <div
                     class="my-2"
                 >

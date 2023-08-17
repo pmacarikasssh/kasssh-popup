@@ -1,8 +1,8 @@
-var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configurable:!0,writable:!0,value:e}):i[s]=e;var o=(i,s,e)=>(m(i,typeof s!="symbol"?s+"":s,e),e);(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const t of n)if(t.type==="childList")for(const l of t.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&a(l)}).observe(document,{childList:!0,subtree:!0});function e(n){const t={};return n.integrity&&(t.integrity=n.integrity),n.referrerPolicy&&(t.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?t.credentials="include":n.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(n){if(n.ep)return;n.ep=!0;const t=e(n);fetch(n.href,t)}})();const u=`<div data-kasssh-popup="">
+var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configurable:!0,writable:!0,value:e}):i[s]=e;var o=(i,s,e)=>(m(i,typeof s!="symbol"?s+"":s,e),e);(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const t of n)if(t.type==="childList")for(const l of t.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&a(l)}).observe(document,{childList:!0,subtree:!0});function e(n){const t={};return n.integrity&&(t.integrity=n.integrity),n.referrerPolicy&&(t.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?t.credentials="include":n.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(n){if(n.ep)return;n.ep=!0;const t=e(n);fetch(n.href,t)}})();const u=`<div data-kasssh-popup class="d-flex flex-column">
     <div id="kasssh-loading-spinner" class="kasssh-loading-container position-absolute d-none d-flex justify-content-center align-items-center">
         <div class="kasssh-loading"></div>
     </div>
-    <div class="kasssh-popup d-flex flex-column">
+    <div class="kasssh-popup d-flex flex-column shadow-lg border-1">
         
         <!-- header -->
         <div class="kasssh-header">
@@ -90,16 +90,15 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
                     <span data-kasssh-currency>£</span><span data-kasssh-cart-amount>{{amount}}</span>
                 </h3>
 
-                <p class="my-0 py-0">
-                    <a data-kasssh-email data-kasssh-info>
+                <div class="my-0 py-0">
+                    <p data-kasssh-email data-kasssh-info class="py-lg-4 my-1 py-0">
                         We will email the barcode to <span>{{email}}</span>
-                    </a>
-                    <br>
-                </p>
+                    </p>
+                </div>
 
             </div>
 
-            <div class="text-center">
+            <div class="text-center lg-my-2 my-1">
 
                 <div class="mt-2" data-kasssh-email data-kasssh-input>
                     <label class="form-label d-block">
@@ -140,7 +139,6 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
                         </span>
                     </label>
                 </div>
-                
                 <div
                     class="my-2"
                 >
