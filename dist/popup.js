@@ -100,14 +100,14 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
 
             <div class="text-center lg-my-2 my-1">
 
-                <div class="mt-2" data-kasssh-email data-kasssh-input>
+                <div class="mt-2 mb-3" data-kasssh-email data-kasssh-input>
                     <label class="form-label d-block">
                         We need your email to send the barcode:
                     </label>
                     <input class="mx-auto form-control" value="{{email}}" placeholder="enter your email" type="email" />
                 </div>
 
-                <div class="mt-2" data-kasssh-phone data-kasssh-input>
+                <div class="mt-2 mb-3" data-kasssh-phone data-kasssh-input>
                     <label class="form-label d-block">
                         Phone number is required for verification and compliance:
                     </label>
@@ -115,7 +115,7 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
                     
                 </div>
                 
-                <div class="mt-2">
+                <div class="mb-3">
                     <label class="check-box-container" kasssh-tnc-label>
                         <input data-kasssh-tnc data-kasssh-input type="checkbox" />
                         <span class="checkmark"></span>
@@ -147,10 +147,7 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
                     data-kasssh-submit
                     class="kasssh-submit-button btn btn-lg"
                     >
-                    <img
-                        src="{{baseUrl}}/images/kasssh-rectangle.png"
-                        class="img-fluid"
-                    />
+                        Checkout with Kasssh
                     </button>
                 </div>
 
