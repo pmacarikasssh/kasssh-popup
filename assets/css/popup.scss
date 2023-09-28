@@ -4,6 +4,17 @@
 }
 
 [data-kasssh-popup] {
+  font-size: 16px;
+  $font-size-base: 1em;
+  $line-height-base: 1;
+  $nav-link-padding-y: 1em;
+  $spacing-unit: 1em;
+
+  $spacer: $spacing-unit;
+  $spacer-y: $spacing-unit;
+  $spacer-x: $spacing-unit;
+  $border-width: 0.1em;
+
   @import "/node_modules/bootstrap/scss/bootstrap";
 
   position: fixed;
@@ -22,7 +33,7 @@
   .kasssh-popup {
     position: relative;
     background-color: #fff;
-    border-radius: 0rem;
+    border-radius: 0em;
   }
 
   .kasssh-footer {
@@ -57,7 +68,7 @@
   }
 
   [data-kasssh-input] input.form-control {
-    max-width: 20rem;
+    max-width: 20em;
   }
 
   .kasssh-submit-button {
@@ -74,15 +85,15 @@
   }
 
   .check-box-container {
-    line-height: 1.1rem;
+    line-height: 1.1em;
     position: relative;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     cursor: pointer;
-    padding: 0.5rem;
-    padding-left: 2rem;
+    padding: 0.5em;
+    padding-left: 2em;
     user-select: none;
     background: #fff;
-    border-radius: 0.2rem;
+    border-radius: 0.2em;
 
     &:hover input ~ .checkmark {
       background-color: #dcfffb;
@@ -103,9 +114,9 @@
     }
     .checkmark {
       position: absolute;
-      left: 0.5rem;
-      height: 1rem;
-      width: 1rem;
+      left: 0.5em;
+      height: 1em;
+      width: 1em;
       background-color: #fff;
       border: 2px solid #58bbb1;
 
@@ -125,7 +136,7 @@
   }
 
   .kasssh-logo {
-    padding-top: 0.5rem;
+    padding-top: 0.5em;
     border-bottom: 1px solid #e7e7e7;
   }
   .kasssh-loading-container {
@@ -166,13 +177,13 @@
       max-width: 30%;
     }
     .step-message {
-      font-size: 0.8rem;
+      font-size: 0.8em;
     }
     .kasssh-footer {
-      border: 1rem solid #fff;
+      border: 1em solid #fff;
     }
   }
-  @include media-breakpoint-down(md){
+  @include media-breakpoint-down(md) {
     @include smallScreenStyles;
   }
   @media (max-height: 800px) {
@@ -182,13 +193,13 @@
     .kasssh-popup {
       position: relative;
       background-color: #fff;
-      border-radius: 1rem;
+      border-radius: 1em;
       max-width: 700px;
       max-height: 900px;
       align-self: center;
     }
     .kasssh-footer {
-      border-radius: 0 0 1rem 1rem;
+      border-radius: 0 0 1em 1em;
     }
   }
 }
