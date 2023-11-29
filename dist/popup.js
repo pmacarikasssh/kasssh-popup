@@ -3,7 +3,6 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
         <div class="kasssh-loading"></div>
     </div>
     <div class="kasssh-popup d-flex flex-column shadow-lg border-1">
-        
         <!-- header -->
         <div class="kasssh-header">
             <!-- logo -->
@@ -85,7 +84,7 @@ var d=Object.defineProperty;var m=(i,s,e)=>s in i?d(i,s,{enumerable:!0,configura
 
             <div class="text-center">
 
-                <h3 class="">
+                <h3 class="kasssh-order-total">
                     Order Total:
                     <span data-kasssh-currency>£</span><span data-kasssh-cart-amount>{{amount}}</span>
                 </h3>
